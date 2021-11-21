@@ -6,8 +6,8 @@
   text-align: center;
   background: radial-gradient(
     circle at 12.3% 19.3%,
-    rgb(85, 88, 218) 0%,
-    rgb(82, 31, 224) 100.2%
+    rgb(97, 99, 230) 0%,
+    rgb(66, 47, 235) 100.2%
   );
   border-radius: 15px;
   box-shadow: rgba(60, 80, 399, 0.9) 0px 7px 89px 0px;
@@ -125,7 +125,7 @@ ul {
   opacity: 0.5;
 }
 .checkout {
-  margin-top: 10px;
+  margin-top: 5px;
   color: rgb(82, 31, 224);
 }
 a:link {

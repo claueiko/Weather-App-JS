@@ -88,6 +88,7 @@ function info(city) {
 // Display all info
 function updateApp(response) {
   celsiusTemperature = response.data.main.temp;
+
   let city = response.data.name;
   let cityUpdate = document.querySelector("h1");
   cityUpdate.innerHTML = `${city}`;
