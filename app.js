@@ -81,21 +81,29 @@ function showPosition(position) {
 let geolocationButton = document.querySelector("#find");
 geolocationButton.addEventListener("click", getCurrentLocation);
 
-function changeCelcius(event) {
-  let tempToday = document.querySelector("#temp-today");
-
-  tempToday.innerHTML = `22°C`;
+// Change from Celcius to Farhenreit and vice versa
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  celsius.classList.remove("active");
+  fahr.classList.add("active");
+  let temperatureElement = document.querySelector("#temp-today");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-function changeFahr(event) {
-  let tempToday = document.querySelector("#temp-today");
-  tempToday.innerHTML = `66°F`;
+function showCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp-today");
+  celsius.classList.add("active");
+  fahr.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+let celsiusTemperature = null;
 
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", changeCelcius);
+let celsius = document.querySelector("#celcius");
+celsius.addEventListener("click", showCelsius);
 let fahr = document.querySelector("#fahr");
-fahr.addEventListener("click", changeFahr);
+fahr.addEventListener("click", showFahrenheit);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
