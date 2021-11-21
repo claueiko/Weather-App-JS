@@ -49,7 +49,7 @@ ul {
   padding-left: 0px;
 }
 .col-5 {
-  padding-top: 40px;
+  padding-top: 20px;
   margin: 0 auto;
   text-align: right;
 }
@@ -95,18 +95,34 @@ ul {
 .wind {
   font-size: 13px;
 }
-.future {
-  background-color: rgba(255, 255, 255, 0.082);
-  margin: 10px;
-  padding: 15px;
-  border-radius: 10px;
-}
 
 .temp-show {
   background-color: rgba(255, 255, 255, 0.082);
   margin: 20px 10px;
   padding: 5px;
   border-radius: 10px;
+}
+
+.weather-forecast {
+  background-color: rgba(255, 255, 255, 0.082);
+  margin: 10px;
+
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.icon-forecast {
+  padding-top: 30x;
+}
+.weather-forecast-temperatures {
+  font-size: 12px;
+  margin-top: 7px;
+}
+.weather-forecast-date {
+  margin-bottom: 7px;
+}
+.weather-forecast-temperature-min {
+  opacity: 0.5;
 }
 .checkout {
   margin-top: 10px;

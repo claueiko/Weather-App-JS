@@ -1,22 +1,72 @@
-let now = new Date();
-let h3 = document.querySelector("h3");
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-let minute = now.getMinutes();
-if (minute < 10) {
-  minute = `0${minute}`;
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let h3 = document.querySelector("h3");
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  h3.innerHTML = `${day}, ${hour}:${minute}`;
 }
-h3.innerHTML = `${day}, ${hour}:${minute}`;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  return days[day];
+}
+// Display Forecast
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+         <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img
+          src="images/${forecastDay.weather[0].icon}.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
+        </div>
+      </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+// Pull forecast data
+
+function getForecast(coordinates) {
+  let apiKey = "11d998cbbca6bedaa384d917305d3b9a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 // Search City
 function search(event) {
   event.preventDefault();
@@ -34,10 +84,10 @@ function info(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(updateApp);
 }
+
 // Display all info
 function updateApp(response) {
   celsiusTemperature = response.data.main.temp;
-
   let city = response.data.name;
   let cityUpdate = document.querySelector("h1");
   cityUpdate.innerHTML = `${city}`;
@@ -70,6 +120,8 @@ function updateApp(response) {
   let currentHumidity = response.data.main.humidity;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${currentHumidity}%`;
+
+  getForecast(response.data.coord);
 }
 function getCurrentLocation(event) {
   event.preventDefault();
@@ -106,6 +158,7 @@ function showCelsius(event) {
   let celsiusTemp = Math.round(celsiusTemperature);
   temperatureElement.innerHTML = `${celsiusTemp}°C`;
 }
+
 let celsiusTemperature = null;
 
 let celsius = document.querySelector("#celcius");
@@ -115,3 +168,4 @@ fahr.addEventListener("click", showFahrenheit);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
+info("Solihull");
