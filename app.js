@@ -42,7 +42,12 @@ function updateApp(response) {
   let currentTemperature = Math.round(response.data.main.temp);
   let temperature = document.querySelector("#temp-today");
   temperature.innerHTML = `${currentTemperature}°C`;
-
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `images/${response.data.weather[0].icon}.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   let currentDescription = response.data.weather[0].description;
   let weatherDescription = document.querySelector("#description");
   weatherDescription.innerHTML = `${currentDescription}`;
