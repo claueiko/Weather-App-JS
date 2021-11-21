@@ -63,6 +63,10 @@ function updateApp(response) {
   let realFeel = document.querySelector("#real-feel");
   realFeel.innerHTML = `Real Feel: ${currentRealFeel}°C`;
 
+  let currentWind = response.data.wind.speed;
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = `Wind: ${currentWind} mph`;
+
   let currentHumidity = response.data.main.humidity;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${currentHumidity}%`;

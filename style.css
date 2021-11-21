@@ -92,6 +92,9 @@ ul {
 .humidity {
   font-size: 13px;
 }
+.wind {
+  font-size: 13px;
+}
 .future {
   background-color: rgba(255, 255, 255, 0.082);
   margin: 10px;
