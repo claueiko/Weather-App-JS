@@ -36,6 +36,8 @@ function info(city) {
 }
 // Display all info
 function updateApp(response) {
+  celsiusTemperature = response.data.main.temp;
+
   let city = response.data.name;
   let cityUpdate = document.querySelector("h1");
   cityUpdate.innerHTML = `${city}`;
@@ -88,7 +90,8 @@ function showFahrenheit(event) {
   celsius.classList.remove("active");
   fahr.classList.add("active");
   let temperatureElement = document.querySelector("#temp-today");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  let farhTemp = Math.round(fahrenheitTemperature);
+  temperatureElement.innerHTML = `${farhTemp}°F`;
 }
 
 function showCelsius(event) {
@@ -96,7 +99,8 @@ function showCelsius(event) {
   let temperatureElement = document.querySelector("#temp-today");
   celsius.classList.add("active");
   fahr.classList.remove("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  let celsiusTemp = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = `${celsiusTemp}°C`;
 }
 let celsiusTemperature = null;
 
