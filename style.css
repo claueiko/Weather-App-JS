@@ -105,3 +105,11 @@ ul {
   padding: 5px;
   border-radius: 10px;
 }
+.checkout {
+  margin-top: 10px;
+  color: rgb(82, 31, 224);
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
