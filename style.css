@@ -48,6 +48,9 @@ ul {
 
   padding-left: 0px;
 }
+.today {
+  font-size: 15px;
+}
 .col-5 {
   padding-top: 20px;
   margin: 0 auto;

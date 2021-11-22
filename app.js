@@ -1,6 +1,5 @@
-function formatDate(timestamp) {
-  let now = new Date(timestamp);
-  let h3 = document.querySelector("h3");
+function formatDate() {
+  let now = new Date();
   let days = [
     "Sunday",
     "Monday",
@@ -16,8 +15,11 @@ function formatDate(timestamp) {
   if (minute < 10) {
     minute = `0${minute}`;
   }
-  h3.innerHTML = `${day}, ${hour}:${minute}`;
+  return `${day}, ${hour}:${minute}`;
 }
+
+let today = document.querySelector(".today");
+today.innerHTML = formatDate();
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
