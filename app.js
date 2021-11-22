@@ -18,6 +18,7 @@ function formatDate(timestamp) {
   }
   h3.innerHTML = `${day}, ${hour}:${minute}`;
 }
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -121,7 +122,6 @@ function updateApp(response) {
   let currentHumidity = response.data.main.humidity;
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${currentHumidity}%`;
-
   getForecast(response.data.coord);
 }
 function getCurrentLocation(event) {
